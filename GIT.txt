@@ -1,0 +1,24 @@
+
+1. Inicializar o Git na aplicação local
+
+git init
+git branch -M main
+git status
+
+Onde:
+- git init: cria o repositório Git local, caso ainda não exista
+- git branch -M main: define o nome da branch atual como main
+- git status: mostra os arquivos que serão considerados pelo Git
+
+
+2. Configure seu nome e e-
+
+git config --global user.name "Seu Nome"
+git config --global user.email "seu-email@example.com"
+
+
+3. Adicione os arquivos e faça o primeiro commit
+
+git add .
+git commit -m "Initial commit"
+

@@ -1,0 +1,107 @@
+import sys
+
+✅ Mostrar caminho do Python em execução
+print(sys.executable)
+
+✅ Exibir a versão do Python em uso
+print(sys.version)
+
+# Jupyter notebook
+
+❌ %pip install requests
+
+
+#------------------------------------------------------------------
+#                          USANDO APIs
+#------------------------------------------------------------------
+
+
+import requests
+
+url = 'https://servicodados.ibge.gov.br/api/v1/localidades/municipios'
+response = requests.get(f"{url}", timeout=30)
+
+# Verificar se a requisição HTTP retornou um erro e gerar exceção automaticamente
+response.raise_for_status()
+
+municipios = response.json()
+print(municipios)
+
+
+
+#------------------------------------------------------------------
+#                       TRANSFORMAÇÃO
+#------------------------------------------------------------------
+
+✅ Transforma cada município em um registro tabular
+
+dados = []
+
+❌ Trata hierarquias que podem estar ausentes
+
+for municipio in municipios:    
+    microrregiao = municipio.get("microrregiao") or {}
+    mesorregiao = microrregiao.get("mesorregiao") or {}
+    uf = mesorregiao.get("UF") or {}
+    regiao = uf.get("regiao") or {}
+
+    dados.append({
+        "id": municipio.get("id"),
+        "nome_municipio": municipio.get("nome"),
+        "nome_microrregiao": microrregiao.get("nome"),
+        "nome_mesorregiao": mesorregiao.get("nome"),
+        "uf_nome": uf.get("nome"),
+        "uf_sigla": uf.get("sigla"),
+        "regiao_nome": regiao.get("nome"),
+        "regiao_sigla": regiao.get("sigla")
+    })
+
+
+
+#------------------------------------------------------------------
+#                       JSON em DATAFRAME
+#------------------------------------------------------------------
+
+
+import pandas as pd
+
+df = pd.DataFrame(
+    dados,
+    columns=[
+        "id",
+        "nome_municipio",
+        "nome_microrregiao",
+        "nome_mesorregiao",
+        "uf_nome",
+        "uf_sigla",
+        "regiao_nome",
+        "regiao_sigla"
+    ]
+)
+
+df.head()
+df.shape
+
+✅ Validações
+
+print("Registros retornados pela API:", len(municipios))
+print("Linhas no DataFrame:", len(df_municipios))
+print("IDs únicos:", df_municipios["id"].nunique())
+print("IDs duplicados:", df["id"].duplicated().sum())
+
+print("\nValores ausentes por coluna:")
+print(df.isna().sum())
+
+
+
+#------------------------------------------------------------------
+#                        API DIVERSAS
+#------------------------------------------------------------------
+
+
+IBGE:
+
+https://servicodados.ibge.gov.br/api/docs/?utm_source=chatgpt.com
+https://servicodados.ibge.gov.br/api/v1/paises/{codigo_pais}
+https://servicodados.ibge.gov.br/api/v1/localidades/estados
+
