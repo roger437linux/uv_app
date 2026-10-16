@@ -1,5 +1,4 @@
-
-1. Inicializar o Git na aplicação local
+✅ 1. Inicializar o Git na aplicação local
 
 git init
 git branch -M main
@@ -11,14 +10,51 @@ Onde:
 - git status: mostra os arquivos que serão considerados pelo Git
 
 
-2. Configure seu nome e e-
+✅ 2. Configure seu nome e e-mail
 
 git config --global user.name "Seu Nome"
 git config --global user.email "seu-email@example.com"
 
 
-3. Adicione os arquivos e faça o primeiro commit
+✅ 3. Adicione os arquivos e faça o primeiro commit
 
 git add .
 git commit -m "Initial commit"
 
+Obs.: Commit registra uma versão do seu código no histórico local
+
+
+✅ 4. Criar repositório no github
+
+URL HTTPS:
+    https://github.com/roger437linux/uv_app.git
+
+
+✅ 5. Conectar o projeto local ao GitHub
+
+git remote add origin https://github.com/roger437linux/uv_app.git
+git remote -v
+
+
+✅ 6. Enviar projeto
+
+git push -u origin main
+
+
+✅ 7. Daqui em diante
+
+git add .
+git commit -m "Describe your changes"
+git push
+
+
+✅ 8. Se alterações no GitHub e quiser trazê-las para o computador
+
+git pull
+
+
+✅ 9. Em outra máquina
+
+git clone https://github.com/USER/REPOn.git
+cd REPO
+uv sync
