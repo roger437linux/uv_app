@@ -1,3 +1,3 @@
-# App para testar uv e API com Python/Flask
+# App para testar uv e api com Python/Flask
 
-<img src="./openbsd.jpg" width='40%'>
+<img src="./openbsd.jpg" width='30%'>
