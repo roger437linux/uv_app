@@ -55,6 +55,8 @@ git pull
 
 ✅ 9. Em outra máquina
 
-git clone https://github.com/USER/REPOn.git
+git clone https://github.com/USER/REPO.git
 cd REPO
 uv sync
+
+uv run tux
